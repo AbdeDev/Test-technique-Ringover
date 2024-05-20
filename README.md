@@ -11,13 +11,14 @@
   le débordement du texte en dehors du conteneur, ensuite on va utiliser un 'white-space: nowrap' qui empêchera le texte de passer à la ligne suivante, 
   et enfin on va utiliser un 'text-overflow: ellipsis' qui ajoutera des points de suspension à la fin du texte qui dépasse la largeur du conteneur.
 
-  Question n°4 :  Alors je pense qu'il faudrait utiliser un event délégation pour écouter le container parent contenant les (<li> <li>) et qui 
-  exécutera donc le code propre à chaque <li>, cela permettra d'optimiser la performance et allégera la mémoire et c'est également plus simple et 
-  plus maintenable.
+  Question n°4 :  Alors je pense qu'il faudrait utiliser un event délégation pour écouter le container 
+  parent contenant les (li) et qui exécutera donc le code propre à chaque li, cela permettra d'optimiser la 
+  performance et allégera la mémoire et c'est également plus simple et plus maintenable.
 
-  Question n°5 : Alors Var est une variable globale et peut être déclaré plusieurs fois et peut être utiliser avant même d'être déclarer, Let est 
-  une variable locale qui ne peut être déclaré qu'une seule fois et ne peux pas être utilisé avant d'être déclarer, Const a les mêmes propriétés que 
-  Let, a la différence que Const n'est pas modifiable.
+  Question n°5 : Alors Var est une variable globale et peut être déclaré plusieurs fois et peut être 
+  utiliser avant même d'être déclarer, Let est une variable locale qui ne peut être déclaré qu'une seule 
+  fois et ne peux pas être utilisé avant d'être déclarer, Const a les mêmes propriétés que Let, a 
+  la différence que Const n'est pas modifiable.
 
   Question n°6: Cela permet d'avoir un développement efficace, une stabilité, des diagnostics claire concernant les performances et la mémoire 
   ainsi qu'une amélioration de l'UX.
