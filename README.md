@@ -32,4 +32,10 @@
   ce moment je m'intéresse pas mal à Adonis.js et GO.
  
 
- 
+ A savoir : 
+ chmod +x todolist_linux_amd64 
+ chmod +x todolist_darwin_amd64 
+ Run serv : ./todolist_darwin_amd64
+ Api routes : http://localhost:9000 
+ Api task routes : http://localhost:9000/v1/tasks
+ localhost serv : http://127.0.0.1:5500/ 
