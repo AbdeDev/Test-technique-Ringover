@@ -11,7 +11,7 @@
   le débordement du texte en dehors du conteneur, ensuite on va utiliser un 'white-space: nowrap' qui empêchera le texte de passer à la ligne suivante, 
   et enfin on va utiliser un 'text-overflow: ellipsis' qui ajoutera des points de suspension à la fin du texte qui dépasse la largeur du conteneur.
 
-  Question n°4 :  Alors je pense qu'il faudrait utiliser un event délégation pour écouter le container parent contenant les <li> <li> et qui 
+  Question n°4 :  Alors je pense qu'il faudrait utiliser un event délégation pour écouter le container parent contenant les (<li> <li>) et qui 
   exécutera donc le code propre à chaque <li>, cela permettra d'optimiser la performance et allégera la mémoire et c'est également plus simple et 
   plus maintenable.
 
