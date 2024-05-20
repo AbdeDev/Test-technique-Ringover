@@ -38,4 +38,4 @@
 - Run serv : ./todolist_darwin_amd64
 - Api routes : http://localhost:9000 
 - Api task routes : http://localhost:9000/v1/tasks
-- localhost serv : http://127.0.0.1:5500/ 
+- localhost serv live server : http://127.0.0.1:5500/ 
