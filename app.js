@@ -1,20 +1,20 @@
-const API_URL = 'http://localhost:9000/v1/tasks';
+const API_URL = 'http://127.0.0.1:9000/v1/tasks';
 
 // Fonction générique pour effectuer les requêtes API
 async function fetchAPI(url, options = {}) {
   try {
-    console.log('Request Options:', options); // Log request options
+    console.log('Fetching API with options:', options);
     const response = await fetch(url, options);
-    console.log('Response:', response); // Log response object
+    console.log('Response:', response);
     if (!response.ok) {
       throw new Error(`Network response was not ok: ${response.statusText}`);
     }
     const text = await response.text();
-    console.log('Response Text:', text); // Log the response text
+    console.log('Response text:', text);
     return text ? JSON.parse(text) : [];
   } catch (error) {
     console.error('Fetch API error:', error);
-    return null;
+    throw error; // Re-throw the error for further handling
   }
 }
 
@@ -37,13 +37,13 @@ function displayTasks(tasks) {
   if (tasks && tasks.length > 0) {
     tasks.forEach(task => {
       const li = document.createElement('li');
-      li.textContent = `${task.name} - ${task.date}`;
-      if (new Date(task.date) < new Date()) {
+      li.textContent = `${task.label} - ${task.description} - ${task.start_date}`;
+      if (new Date(task.start_date) < new Date()) {
         li.classList.add('completed');
       }
       const deleteButton = document.createElement('button');
       deleteButton.textContent = 'Delete';
-      deleteButton.addEventListener('click', () => deleteTask(task.id));
+      deleteButton.addEventListener('click', () => deleteTask(task.label));
       li.appendChild(deleteButton);
       taskList.appendChild(li);
     });
@@ -56,35 +56,39 @@ function displayTasks(tasks) {
 
 // Ajouter une tâche
 document.getElementById('add-task').addEventListener('click', async () => {
-  const name = document.getElementById('task-name').value;
-  const date = document.getElementById('task-date').value;
+  const label = document.getElementById('task-label').value;
+  const description = document.getElementById('task-description').value;
+  const start_date = document.getElementById('task-date').value;
 
-  if (name && date) {
+  if (label && description && start_date) {
     try {
-      const newTask = { name, date };
+      const newTask = { label, description, start_date };
       console.log('Adding task:', newTask); // Log new task
       const result = await fetchAPI(API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(newTask)
+        headers: {
+          'Content-Type': 'application/json' // Set the Content-Type header
+        },
+        body: JSON.stringify(newTask) // Stringify the body
       });
       console.log('Task added:', result);
-      document.getElementById('task-name').value = '';
+      document.getElementById('task-label').value = '';
+      document.getElementById('task-description').value = '';
       document.getElementById('task-date').value = '';
       loadTasks(); // Recharger les tâches après l'ajout
     } catch (error) {
       console.error('Error adding task:', error);
     }
   } else {
-    console.log('Name and date are required to add a task');
+    console.log('Label, description, and start date are required to add a task');
   }
 });
 
 // Supprimer une tâche
-async function deleteTask(id) {
+async function deleteTask(label) {
   try {
-    console.log(`Deleting task: ${id}`);
-    const result = await fetchAPI(`${API_URL}/${id}`, {
+    console.log(`Deleting task: ${label}`);
+    const result = await fetchAPI(`${API_URL}/${label}`, {
       method: 'DELETE'
     });
     console.log('Task deleted:', result);
@@ -104,8 +108,8 @@ async function filterTasks() {
   try {
     const tasks = await fetchAPI(API_URL);
     const filteredTasks = tasks.filter(task => {
-      const matchesText = task.name.toLowerCase().includes(searchText);
-      const matchesDate = searchDate ? task.date === searchDate : true;
+      const matchesText = task.label.toLowerCase().includes(searchText) || task.description.toLowerCase().includes(searchText);
+      const matchesDate = searchDate ? task.start_date.startsWith(searchDate) : true;
       return matchesText && matchesDate;
     });
     displayTasks(filteredTasks);
