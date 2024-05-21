@@ -47,7 +47,7 @@
 **Objectif du jour :** Finir le test technique 
 **Progression :** 100%
 ## Fonctionnalités implementés
-- Mise en place de test
+- Mise en place de test en Jest
 
 
 
