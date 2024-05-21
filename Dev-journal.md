@@ -35,8 +35,10 @@
 - Test de l'OpenAPI 
 - Récuperation des differents Endpoint
 - implementation de la création de tache
+- implementation de la création de tache par nom par date et par heure
 - implementation de la liste des tâches existantes
 - implementation de Un système de validation de tâche par date de fin
+- Ajout visuel d'une tache barré si la date de la tache est aujourd'hui ou passé
 - implementation de La possibilité de supprimer une tâche précise 
 - implementation de Un champ de recherche par texte et par date
 

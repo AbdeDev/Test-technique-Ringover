@@ -14,7 +14,7 @@ async function fetchAPI(url, options = {}) {
     return text ? JSON.parse(text) : [];
   } catch (error) {
     console.error('Fetch API error:', error);
-    throw error; // Re-throw the error for further handling
+    throw error;
   }
 }
 
@@ -37,7 +37,7 @@ function displayTasks(tasks) {
   if (tasks && tasks.length > 0) {
     tasks.forEach(task => {
       const li = document.createElement('li');
-      li.textContent = `${task.label} - ${task.description} - ${task.start_date}`;
+      li.textContent = `${task.label} - ${task.start_date}`;
       if (new Date(task.start_date) < new Date()) {
         li.classList.add('completed');
       }
@@ -57,30 +57,30 @@ function displayTasks(tasks) {
 // Ajouter une tâche
 document.getElementById('add-task').addEventListener('click', async () => {
   const label = document.getElementById('task-label').value;
-  const description = document.getElementById('task-description').value;
   const start_date = document.getElementById('task-date').value;
 
-  if (label && description && start_date) {
+  if (label && start_date) {
     try {
-      const newTask = { label, description, start_date };
-      console.log('Adding task:', newTask); // Log new task
+      // Format de la date (et peur etre avec heure plus tard)
+      const formattedDate = new Date(start_date).toISOString();
+      const newTask = { label, start_date: formattedDate };
+      console.log('Adding task:', newTask);
       const result = await fetchAPI(API_URL, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json' // Set the Content-Type header
+          'Content-Type': 'application/json' 
         },
-        body: JSON.stringify(newTask) // Stringify the body
+        body: JSON.stringify(newTask) 
       });
       console.log('Task added:', result);
       document.getElementById('task-label').value = '';
-      document.getElementById('task-description').value = '';
       document.getElementById('task-date').value = '';
-      loadTasks(); // Recharger les tâches après l'ajout
+      loadTasks(); 
     } catch (error) {
       console.error('Error adding task:', error);
     }
   } else {
-    console.log('Label, description, and start date are required to add a task');
+    console.log('Label and start date are required to add a task');
   }
 });
 
@@ -108,7 +108,7 @@ async function filterTasks() {
   try {
     const tasks = await fetchAPI(API_URL);
     const filteredTasks = tasks.filter(task => {
-      const matchesText = task.label.toLowerCase().includes(searchText) || task.description.toLowerCase().includes(searchText);
+      const matchesText = task.label.toLowerCase().includes(searchText);
       const matchesDate = searchDate ? task.start_date.startsWith(searchDate) : true;
       return matchesText && matchesDate;
     });
