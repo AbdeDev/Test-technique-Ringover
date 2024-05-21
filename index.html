@@ -1,17 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" author ="Abde">
   <title>Todo List</title>
-  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
     <h1>Todo List</h1>
     <div class="form-container">
-      <input type="text" id="task-name" placeholder="Task Name">
-      <input type="date" id="task-date">
+      <input type="text" id="task-label" placeholder="Task Label" required>
+      <input type="text" id="task-description" placeholder="Task Description" required>
+      <input type="datetime-local" id="task-date" required>
       <button id="add-task">Add Task</button>
     </div>
     <div class="search-container">
@@ -20,6 +21,6 @@
     </div>
     <ul id="task-list"></ul>
   </div>
-  <script src="/app.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
