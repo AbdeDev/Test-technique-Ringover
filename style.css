@@ -1,52 +1,60 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .container {
-  background-color: #fff;
+  width: 100%;
+  max-width: 800px;
   padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+header {
   text-align: center;
-}
-
-h1 {
-  margin: 0 0 20px;
-  font-size: 24px;
-  color: #333;
-}
-
-.form-container {
   margin-bottom: 20px;
 }
 
-input[type="text"],
-input[type="datetime-local"],
-input[type="date"] {
-  width: calc(100% - 22px);
+h1 {
+  font-size: 2em;
+  color: #333;
+}
+
+.form-container,
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.form-container input,
+.search-container input {
+  width: 70%;
   padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  font-size: 16px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 button {
-  width: 100%;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: #28a745;
+  color: white;
   border: none;
-  border-radius: 3px;
-  color: #fff;
-  font-size: 16px;
+  border-radius: 4px;
   cursor: pointer;
 }
 
@@ -54,32 +62,46 @@ button:hover {
   background-color: #218838;
 }
 
-.search-container {
-  margin-bottom: 20px;
+.task-list-container {
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 ul {
   list-style-type: none;
-  padding: 0;
 }
 
 li {
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
-.completed {
+li.completed {
   text-decoration: line-through;
-  color: #888;
+  color: #999;
 }
 
-button {
+li button {
   background-color: #dc3545;
+  margin-left: 10px;
 }
 
-button:hover {
+li button:hover {
   background-color: #c82333;
+}
+
+@media (max-width: 600px) {
+  .form-container,
+  .search-container {
+    flex-direction: column;
+  }
+
+  .form-container input,
+  .search-container input,
+  button {
+    width: 100%;
+    margin: 5px 0;
+  }
 }
