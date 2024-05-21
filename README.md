@@ -37,8 +37,10 @@
 - chmod +x todolist_darwin_amd64 
 - Run serv : ./todolist_darwin_amd64
 - Run node serv for log : - cd/api -- node server.js
+- install npm : npm Install or npm i
+- run test : npm test
 - Api routes : http://localhost:9000 
 - Api task routes premier test : http://localhost:9000/v1/tasks
-Api task routes Second test : http://127.0.0.1:9000/v1/tasks
+- Api task routes Second test : http://127.0.0.1:9000/v1/tasks
 - localhost serv live server : http://127.0.0.1:5500/ 
 
